@@ -12,7 +12,6 @@
             }
             else
             {
-                $protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
                 return  qa_opt('site_url') . '?qa=mobbr_';
             }
         }
