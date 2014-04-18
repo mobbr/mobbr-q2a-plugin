@@ -175,9 +175,16 @@
             require_once QA_HTML_THEME_LAYER_DIRECTORY . 'qa-mobbr-queries.php';
 
             $environment = qa_opt('mobbr_support_environment');
-            $this->output('<script type="text/javascript" src="' . ($environment === 'test' ? 'https://test-www.mobbr.com' : 'https://mobbr.com') . '/mobbr-button.js"></script>');
+            $this->output('<script type="text/javascript" src="' . ($environment === 'test' ? 'https://test-www.mobbr.com/mobbr.js' : 'https://mobbr.com/mobbr-button.js') . '"></script>');
             if (defined('QA_MOBBR_SSO') && QA_MOBBR_SSO && defined('QA_EXTERNAL_USERS') && QA_EXTERNAL_USERS) {
                 // only for Mobbr SSO
+                $this->output('<script>');
+                $this->output('window.onload = function () {');
+                $this->output('mobbr.setUiUrl("' . ($environment === 'test' ? 'https://test-www.mobbr.com/' : 'https://mobbr.com/') . '");');
+                $this->output('mobbr.setApiUrl("' . ($environment === 'test' ? 'https://test-api.mobbr.com/' : 'https://api.mobbr.com/') . '");');
+                $this->output('mobbr.createDiv();');
+                $this->output('}');
+                $this->output('</script>');
                 $this->output('<script>mobbrSSO.enable();</script>');
             }
             $page = qa_request_part(0);

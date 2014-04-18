@@ -18,7 +18,7 @@
                     // reconstruct current URL, Mobbr will find the canonical URL there
                     $url = rtrim( qa_opt('site_url'), '/' ) . '/' . implode( "/", qa_request_parts() ) ;
                     $environment = qa_opt('mobbr_support_environment');
-                    $ch = curl_init( $environment === 'test' ? 'https://test-api.mobbr.com/api/claim/claim_url' : 'https://api.mobbr.com/api/claim/claim_url' );
+                    $ch = curl_init( $environment === 'test' ? 'https://test-api.mobbr.com/api_v1/payments/claim' : 'https://api.mobbr.com/api_v1/payments/claim' );
                     if ( $ch == FALSE )
                     {
                         error_log( "Can't open Mobbr-API: " . $url );
