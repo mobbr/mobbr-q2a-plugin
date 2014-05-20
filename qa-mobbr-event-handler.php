@@ -29,8 +29,8 @@
                     curl_setopt( $ch, CURLOPT_POST, 1 );
                     curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 );
                     curl_setopt( $ch, CURLOPT_POSTFIELDS, "url=" . urlencode( $url ) );
-                    curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, 1 );
-                    curl_setopt( $ch, CURLOPT_SSL_VERIFYHOST, 2 );
+                    curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, 0);
+                    curl_setopt( $ch, CURLOPT_SSL_VERIFYHOST, 0 );
                     curl_setopt( $ch, CURLOPT_FORBID_REUSE, 1 );
                     curl_setopt( $ch, CURLOPT_HEADER, 1 );
                     curl_setopt( $ch, CURLINFO_HEADER_OUT, 1 );
