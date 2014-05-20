@@ -37,15 +37,16 @@
                     curl_setopt( $ch, CURLOPT_CONNECTTIMEOUT, 3 );
                     curl_setopt( $ch, CURLOPT_HTTPHEADER, array( 'Connection: Close' ) );
                     $res = curl_exec( $ch );
+                    if ( $res === FALSE )
+                    {
+                        error_log( "Can't call Mobbr-API: " . curl_error( $ch )  );
+                        curl_close( $ch );
+                        break;
+                    }
                     $httpcode = curl_getinfo( $ch, CURLINFO_HTTP_CODE );
                     if ( ! ( $httpcode == 200 || $httpcode == 201 ) )
                     {
                         error_log( "HTTP-CODE $httpcode returned by Mobbr-API: " . print_r( $res, TRUE ) );
-                        break;
-                    }
-                    if ( $res === FALSE )
-                    {
-                        error_log( "Can't call Mobbr-API: " . curl_error( $ch )  );
                         curl_close( $ch );
                         break;
                     }
