@@ -2,7 +2,7 @@
 
 /*
 	Plugin Name: Mobbr Support
-	Plugin URI:
+	Plugin URI: https://github.com/mobbr/mobbr-q2a-plugin
 	Plugin Description: Insert Mobbr metadata and buttons
 	Plugin Version: 1.1
 	Plugin Date: 2012-08-21
