@@ -7,12 +7,12 @@
         {
             if (QA_EXTERNAL_USERS)
             {
-                $environment = qa_opt('mobbr_support_environment');
-                return $environment === 'test' ? 'https://test-api.mobbr.com/id/' : 'https://api.mobbr.com/id/';
+                //$environment = qa_opt('mobbr_support_environment');
+                return 'https://mobbr.com/#/person/';
             }
             else
             {
-                return  qa_opt('site_url') . '?qa=mobbr_';
+                return  qa_opt('site_url') . '?qa=user_';
             }
         }
 
@@ -166,30 +166,49 @@
 
 		function head_links()
 		{
-		    // -----------------------------------------------------------
-		    // We detect on which page type we are and generate the script
-		    // that is needed for that particular page type.
-		    // -----------------------------------------------------------
-
             require_once QA_HTML_THEME_LAYER_DIRECTORY . 'qa-mobbr-widget-button.php';
             require_once QA_HTML_THEME_LAYER_DIRECTORY . 'qa-mobbr-queries.php';
 
             $environment = qa_opt('mobbr_support_environment');
-            $this->output('<script type="text/javascript" src="' . ($environment === 'test' ? 'https://test-www.mobbr.com/mobbr.js' : 'https://mobbr.com/mobbr-button.js') . '"></script>');
-            if (defined('QA_MOBBR_SSO') && QA_MOBBR_SSO && defined('QA_EXTERNAL_USERS') && QA_EXTERNAL_USERS) {
-                // only for Mobbr SSO
-                $this->output('<script>');
-                $this->output('window.onload = function () {');
-                $this->output('mobbr.setUiUrl("' . ($environment === 'test' ? 'https://test-www.mobbr.com/' : 'https://mobbr.com/') . '");');
-                $this->output('mobbr.setApiUrl("' . ($environment === 'test' ? 'https://test-api.mobbr.com/' : 'https://api.mobbr.com/') . '");');
-                $this->output('mobbr.createDiv();');
-                $this->output('}');
-                $this->output('</script>');
+            $scripttype = qa_opt('mobbr_support_scripttype');
+            $this->output('<script type="text/javascript" src="' . ($environment === 'test' ? 'https://test-www.mobbr.com/mobbr.src.js' : 'https://mobbr.com/mobbr-button.js') . '"></script>');
+            //if (defined('QA_MOBBR_SSO') && QA_MOBBR_SSO && defined('QA_EXTERNAL_USERS') && QA_EXTERNAL_USERS) {
+            // only for Mobbr SSO
+            $this->output('<script>');
+            //$this->output('window.onload = function () {');
+            $this->output('mobbr.setUiUrl("' . ($environment === 'test' ? 'https://test-www.mobbr.com/' : 'https://mobbr.com/') . '");');
+            $this->output('mobbr.setApiUrl("' . ($environment === 'test' ? 'https://test-api.mobbr.com/' : 'https://api.mobbr.com/') . '");');
+            $this->output('mobbr.setLightboxUrl("' . ($environment === 'test' ? 'https://test-www.mobbr.com/lightbox/#' : 'https://mobbr.com/lightbox/#') . '");');
+            $this->output('mobbr.createDiv();');
+            //$this->output('}');
+            $this->output('</script>');
+            if (defined('QA_MOBBR_SSO') && QA_MOBBR_SSO) {
                 $this->output('<script>mobbrSSO.enable();</script>');
             }
+            qa_html_theme_base::head_links();
+
+            if ($scripttype === 'meta') {
+                $meta = $this->get_meta();
+                if (!empty( $meta ) )
+                {
+                    $this->output('<meta name="participation" content=\''.json_encode($meta).'\'/>');
+                }
+            }
+        }
+
+        // --------------------------------------------------------------------
+
+        public function get_meta() {
+            // -----------------------------------------------------------
+            // We detect on which page type we are and generate the script
+            // that is needed for that particular page type.
+            // -----------------------------------------------------------
+
+            //require_once QA_HTML_THEME_LAYER_DIRECTORY . 'qa-mobbr-widget-button.php';
+            //require_once QA_HTML_THEME_LAYER_DIRECTORY . 'qa-mobbr-queries.php';
+
             $page = qa_request_part(0);
             $sub = qa_request_part(1);
-            qa_html_theme_base::head_links();
             $meta = array();
             if (is_numeric($page))
             {
@@ -212,7 +231,7 @@
             }
             else if ($page === 'tag')
             {
-                    // nothing yet
+                // nothing yet
             }
             else if ($page === 'users')
             {
@@ -225,7 +244,8 @@
             }
             if (!empty( $meta ) )
             {
-                $this->output('<meta name="participation" content=\''.json_encode($meta).'\'/>');
+                return $meta;
+                //$this->output('<meta name="participation" content=\''.json_encode($meta).'\'/>');
             }
         }
 	}

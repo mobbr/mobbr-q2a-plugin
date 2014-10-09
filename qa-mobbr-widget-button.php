@@ -27,10 +27,17 @@
         {
             require_once 'qa-mobbr.php';
             require_once 'qa-mobbr-url.php';
+            require_once 'qa-mobbr-layer.php';
+
+            $scripttype = qa_opt('mobbr_support_scripttype');
+            if ($scripttype === 'inline') {
+                $layer = new qa_html_theme_layer();
+                $meta = $layer->get_meta();
+            }
+
             $buttontype = qa_mobbr::$buttontypes[qa_opt('mobbr_support_buttontype')];
             $currency = qa_opt('mobbr_support_currency');
-            $buttonhtml = '<script src="' . qa_mobbr_www_url() . '/mobbr-button.js" type="text/javascript"></script>' .
-                '<script type="text/javascript">mobbr.button' . $buttontype. '("", "' . $currency . '");</script>';
+            $buttonhtml = '<script type="text/javascript">mobbr.button' . $buttontype. '(' . ($scripttype === 'inline' ? json_encode($meta) : '""') . ', "' . $currency . '");</script>';
             $html = qa_opt('mobbr_support_button_html');
             if (strpos($html, '{{button}}')) {
                 $html = str_replace('{{button}}', $buttonhtml, $html);

@@ -35,6 +35,8 @@
                 return 30;
             elseif ($option=='mobbr_support_cronjob_decay_percentage')
                 return 5;
+            elseif ($option=='mobbr_support_scripttype')
+                return 'meta';
             else
                 return '';
         }
@@ -61,6 +63,7 @@
                 qa_opt('mobbr_support_platform_percentage', qa_post_text('mobbr_support_platform_percentage_field'));
                 qa_opt('mobbr_support_community_percentage', qa_post_text('mobbr_support_community_percentage_field'));
                 qa_opt('mobbr_support_selected_answer_bonus', qa_post_text('mobbr_support_selected_answer_bonus_field'));
+                qa_opt('mobbr_support_scripttype', qa_post_text('mobbr_support_scripttype_field'));
                 $saved=true;
             }
 
@@ -74,6 +77,13 @@
                         'value' => qa_mobbr::$environments[qa_opt('mobbr_support_environment')],
                         'options' => qa_mobbr::$environments,
                         'tags' => 'name="mobbr_support_environment_field"',
+                    ),
+                    array(
+                        'label' => 'Script type:',
+                        'type' => 'select',
+                        'value' => qa_mobbr::$scripttypes[qa_opt('mobbr_support_scripttype')],
+                        'options' => qa_mobbr::$scripttypes,
+                        'tags' => 'name="mobbr_support_scripttype_field"',
                     ),
                     array(
                         'label' => 'Button type:',

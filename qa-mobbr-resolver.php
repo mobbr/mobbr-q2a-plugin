@@ -4,7 +4,7 @@
 
         function match_request($request)
         {
-            return (strpos($request, 'mobbr_') === 0);
+            return (strpos($request, 'user_') === 0);
         }
 
         function process_request($request)

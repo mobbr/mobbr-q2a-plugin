@@ -26,7 +26,8 @@
                     }
                     curl_setopt( $ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1 );
                     curl_setopt( $ch, CURLOPT_PORT, 443 );
-                    curl_setopt( $ch, CURLOPT_POST, 1 );
+                    //curl_setopt( $ch, CURLOPT_PUT, 1 );
+                    curl_setopt( $ch, CURLOPT_CUSTOMREQUEST, "PUT" );
                     curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 );
                     curl_setopt( $ch, CURLOPT_POSTFIELDS, "url=" . urlencode( $url ) );
                     curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, 0);
