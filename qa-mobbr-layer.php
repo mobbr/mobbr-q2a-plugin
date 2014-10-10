@@ -40,8 +40,13 @@
             // ----------------------------------------------------------------
 
             // script basics
-            $type = qa_db_single_select(qa_db_mobbr_question_type_query(intval($postid)));
-            $type= $type[0];
+            $scripttype = qa_opt('mobbr_support_scripttype');
+            $type = 'payment';
+            if ($scripttype === 'meta') {
+                $type = qa_db_single_select(qa_db_mobbr_question_type_query(intval($postid)));
+                $type= $type[0]['type'];
+            }
+
             $meta = array(
                 "id-base" => $this->id_base(),
                 "type" => $type['type'],
