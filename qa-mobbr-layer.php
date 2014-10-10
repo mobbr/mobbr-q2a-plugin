@@ -49,7 +49,7 @@
 
             $meta = array(
                 "id-base" => $this->id_base(),
-                "type" => $type['type'],
+                "type" => $type,
                 "language" => qa_opt('mobbr_support_language') );
 
             // add question repliers, no percentages but ratios
