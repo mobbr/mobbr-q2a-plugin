@@ -176,7 +176,7 @@
 
             $environment = qa_opt('mobbr_support_environment');
             $scripttype = qa_opt('mobbr_support_scripttype');
-            $this->output('<script type="text/javascript" src="' . ($environment === 'test' ? 'https://test-www.mobbr.com/mobbr.src.js' : 'https://mobbr.com/mobbr-button.js') . '"></script>');
+            $this->output('<script type="text/javascript" src="' . ($environment === 'test' ? 'https://test-www.mobbr.com/mobbr.js' : 'https://mobbr.com/mobbr-button.js') . '"></script>');
             //if (defined('QA_MOBBR_SSO') && QA_MOBBR_SSO && defined('QA_EXTERNAL_USERS') && QA_EXTERNAL_USERS) {
             // only for Mobbr SSO
             $this->output('<script>');
