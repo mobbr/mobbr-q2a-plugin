@@ -50,7 +50,8 @@
             $meta = array(
                 "id-base" => $this->id_base(),
                 "type" => $type,
-                "language" => qa_opt('mobbr_support_language') );
+                "language" => qa_opt('mobbr_support_language'),
+                "keywords" => array("qa", "question2answer"));
 
             // add question repliers, no percentages but ratios
             $answer_ratios = qa_db_single_select(qa_db_mobbr_question_ratio_query(intval($postid)));
@@ -148,7 +149,9 @@
             $ratios = qa_db_single_select(qa_db_mobbr_reputation_query());
             $meta = array(
                 "id-base" => $this->id_base(),
-                "description" => "Donation to all community members, based on the points the earned.", );
+                "language" => qa_opt('mobbr_support_language'),
+                "description" => "Donation to top community members, based on the points the earned.", 
+                "keywords" => array("qa", "question2answer"));
             $meta['participants'] = array();
             $platform_percentage = qa_opt('mobbr_support_platform_percentage');
             if ( empty( $platform_percentage ) ) $platform_percentage = 25;
