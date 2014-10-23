@@ -124,7 +124,7 @@
             return array(
                 'columns' => array('p.points', 'p.userid'),
                 'source' => '^userpoints AS p
-                    WHERE p.points>0
+                    WHERE p.points>100
                     ORDER BY p.points DESC
                     LIMIT 50',
                 'arguments' => array(),
@@ -136,7 +136,7 @@
                 'columns' => array('p.points', 'u.handle AS userid' ),
                 'source' => '^userpoints AS p
                     JOIN ^users AS u ON u.userid=p.userid
-                    WHERE p.points>0
+                    WHERE p.points>100
                     ORDER BY p.points DESC
                     LIMIT 50',
                 'arguments' => array(),
