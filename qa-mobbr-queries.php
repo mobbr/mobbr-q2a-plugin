@@ -117,6 +117,7 @@
         );
     }
 
+
     function qa_db_mobbr_reputation_query( )
     {
         if ((defined('QA_EXTERNAL_USERS') && QA_EXTERNAL_USERS) || defined('QA_WORDPRESS_INTEGRATE_PATH'))
