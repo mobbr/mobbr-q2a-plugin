@@ -69,7 +69,7 @@
                     foreach( $answerer as $ratio )
                     {
                         $id = $this->get_user_id($ratio['userid']);
-                        $meta['participants'][] = array( "id" => $id, "share" => $ratio['count'], "role" => "QA thread solver" );
+                        $meta['participants'][] = array( "id" => $id, "share" => $bonus_percentage . "%", "role" => "QA thread solver" );
                     }
                 }
             }
