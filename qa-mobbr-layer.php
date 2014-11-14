@@ -47,7 +47,6 @@
                 "type" => $type,
                 "language" => qa_opt('mobbr_support_language'),
                 "keywords" => array("qa", "question2answer"),
-                // TODO add topic tags
                 "participants" => array() );
 
             // add question repliers, no percentages but ratios
@@ -61,8 +60,19 @@
                 }
             }
 
-            // add bonus for selected question
-            // TODO
+            $bonus_percentage = qa_opt('mobbr_support_selected_answer_bonus');
+            if ( ! empty( $bonus_percentage ))
+            {
+                $answerer = qa_db_single_select(qa_db_mobbr_question_type_query(intval($postid)));
+                if ( ! empty( $answerer ))
+                {
+                    foreach( $answerer as $ratio )
+                    {
+                        $id = $this->get_user_id($ratio['userid']);
+                        $meta['participants'][] = array( "id" => $id, "share" => $ratio['count'], "role" => "QA thread solver" );
+                    }
+                }
+            }
 
             // add platform owner
             $platform_percentage = qa_opt('mobbr_support_platform_percentage');
