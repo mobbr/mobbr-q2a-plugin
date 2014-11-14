@@ -72,9 +72,9 @@
         // ---------------------------------------------------------------------------
 
         return array(
-            'columns' => array('type' => "IF( q.selchildid IS NULL AND q.parentid IS NULL, 'pledge', 'payment' )", 'a.userid'),
+            'columns' => array('type' => "IF( q.selchildid IS NULL AND q.parentid IS NULL, 'pledge', 'payment' )", 'userid' => 'a.userid'),
             'source' => "^posts AS q
-                LEFT JOIN qa_posts AS a ON a.postid=q.selchildid
+                LEFT JOIN ^posts AS a ON a.postid=q.selchildid
                 WHERE q.postid=#",
             'arguments' => array($postid),
         );

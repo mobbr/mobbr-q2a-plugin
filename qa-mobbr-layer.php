@@ -40,6 +40,7 @@
             // ----------------------------------------------------------------
 
             $type = qa_db_single_select(qa_db_mobbr_question_type_query(intval($postid)));
+            $answerer = $type[0]['userid'];
             $type = $type[0]['type'];
 
             $meta = array(
@@ -61,17 +62,13 @@
             }
 
             $bonus_percentage = qa_opt('mobbr_support_selected_answer_bonus');
-            if ( ! empty( $bonus_percentage ))
+            if ( ! ( empty( $bonus_percentage ) || empty( $answerer ) ) )
             {
-                $answerer = qa_db_single_select(qa_db_mobbr_question_type_query(intval($postid)));
-                if ( ! empty( $answerer ))
-                {
-                    foreach( $answerer as $ratio )
-                    {
-                        $id = $this->get_user_id($ratio['userid']);
-                        $meta['participants'][] = array( "id" => $id, "share" => $bonus_percentage . "%", "role" => "QA thread solver" );
-                    }
-                }
+                $id = $this->get_user_id($answerer);
+                $meta['participants'][] = array(
+                    "id" => $id,
+                    "role" => "QA thread solver",
+                    "share" =>  $bonus_percentage . "%" );
             }
 
             // add platform owner
