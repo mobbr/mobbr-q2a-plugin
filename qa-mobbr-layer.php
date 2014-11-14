@@ -39,40 +39,19 @@
             // Return the payment script for a question
             // ----------------------------------------------------------------
 
-            // script basics
-            $scripttype = qa_opt('mobbr_support_scripttype');
-            $type = 'payment';
-            if ($scripttype === 'meta') {
-                $type = qa_db_single_select(qa_db_mobbr_question_type_query(intval($postid)));
-                $type= $type[0]['type'];
-            }
+            $type = qa_db_single_select(qa_db_mobbr_question_type_query(intval($postid)));
+            $type = $type[0]['type'];
 
             $meta = array(
                 "id-base" => $this->id_base(),
                 "type" => $type,
                 "language" => qa_opt('mobbr_support_language'),
-                "keywords" => array("qa", "question2answer"));
+                "keywords" => array("qa", "question2answer"),
+                // TODO add topic tags
+                "participants" => array() );
 
             // add question repliers, no percentages but ratios
             $answer_ratios = qa_db_single_select(qa_db_mobbr_question_ratio_query(intval($postid)));
-
-            if (!isset($meta['participants']))
-            {
-                $meta['participants'] = array();
-            }
-
-            // add platform owner
-            $platform_percentage = qa_opt('mobbr_support_platform_percentage');
-            $platform_account = qa_opt('mobbr_support_platform_account');
-            if ( !empty( $platform_account ) )
-            {
-                if ( empty( $platform_percentage ) ) $platform_percentage = 10;
-                $meta['participants'][] = array(
-                    "id" => $platform_account,
-                    "role" => "QA platform owner",
-                    "share" =>  $platform_percentage . "%" );
-            }
-
             if (!empty( $answer_ratios ))
             {
                 foreach( $answer_ratios as $ratio )
@@ -80,38 +59,22 @@
                     $id = $this->get_user_id($ratio['userid']);
                     $meta['participants'][] = array( "id" => $id, "share" => $ratio['count'], "role" => "QA thread answerer" );
                 }
+            }
 
-                // also add the community members
-                $community_percentage = qa_opt('mobbr_support_community_percentage');
-                $community_ratios = qa_db_single_select(qa_db_mobbr_reputation_query());
-                if ( empty( $community_percentage ) ) $community_percentage = 30;
-                // convert community members points to percentages, first sum all points
-                $total = 0;
-                // first get total count
-                foreach( $community_ratios as $ratio )
-                {
-                    $total +=  $ratio['points'];
-                }
-                // add participants and convert points to percentages
-                foreach( $community_ratios as $ratio )
-                {
-                    $id = $this->get_user_id($ratio['userid']);
-                    $share = floor( $ratio['points'] / $total * $community_percentage );
-                    if ($share > 0)
-                    {
-                        $meta['participants'][] = array( "id" => $id, "share" => $share . "%", "role" => "QA community member" );
-                    }
-                }
-            }
-            else
+            // add bonus for selected question
+            // TODO
+
+            // add platform owner
+            $platform_percentage = qa_opt('mobbr_support_platform_percentage');
+            $platform_account = qa_opt('mobbr_support_platform_account');
+            if ( ! ( empty( $platform_account ) || empty( $platform_percentage ) ) )
             {
-                $ratios = qa_db_single_select(qa_db_mobbr_reputation_query());
-                foreach( $ratios as $ratio )
-                {
-                    $id = $this->get_user_id($ratio['userid']);
-                    $meta['participants'][] = array( "id" => $id, "share" => $ratio['points'], "role" => "QA community member" );
-                }
+                $meta['participants'][] = array(
+                    "id" => $platform_account,
+                    "role" => "QA platform owner",
+                    "share" =>  $platform_percentage . "%" );
             }
+
             return $meta;
         }
 

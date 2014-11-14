@@ -5,15 +5,6 @@
         exit;
     }
 
-    function qa_db_mobbr_decay_query($percentage)
-    {
-        // called by cronjob, just decays everyone's point with a configurable percentage
-        return array(
-            'source' => "UPDATE ^userpoints SET points=GREATEST(100, points*(100-#)/100)",
-            'arguments' => array($percentage),
-        );
-    }
-
     function qa_db_mobbr_question_ratio_query($postid)
     {
         /*
