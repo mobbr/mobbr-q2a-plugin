@@ -72,6 +72,13 @@
 
                 'fields' => array(
                     array(
+                        'label' => 'Language:',
+                        'type' => 'select',
+                        'value' => qa_mobbr::$languages[qa_opt('mobbr_support_language')],
+                        'options' => qa_mobbr::$languages,
+                        'tags' => 'name="mobbr_support_language_field"',
+                    ),
+                    array(
                         'label' => 'Mobbr API:',
                         'type' => 'select',
                         'value' => qa_mobbr::$environments[qa_opt('mobbr_support_environment')],
@@ -86,14 +93,21 @@
                         'tags' => 'name="mobbr_support_buttontype_field"',
                     ),
                     array(
-                        'label' => 'Button HTML:',
+                        'label' => 'Button currency:',
+                        'type' => 'select',
+                        'value' => qa_mobbr::$currencies[qa_opt('mobbr_support_currency')],
+                        'options' => qa_mobbr::$currencies,
+                        'tags' => 'name="mobbr_support_currency_field"',
+                    ),
+                    array(
+                        'label' => 'Button widget:',
                         'type' => 'textarea',
                         'value' => qa_opt('mobbr_support_button_html') ? qa_opt('mobbr_support_button_html') : '{{button}}',
                         'tags' => 'name="mobbr_support_button_html_field"',
-                        'note' => 'Will be added inline to the page, {{button}} is the placeholder for Mobbr button-code',
+                        'note' => '<small>HTML that will be added inline to the page, {{button}} is the placeholder for the button and should always be here</small>',
                     ),
-                    array(
-                        'label' => 'Badge HTML:',
+                    /*array(
+                        'label' => 'Badge widget HTML:',
                         'type' => 'textarea',
                         'value' => qa_opt('mobbr_support_badge_html') ? qa_opt('mobbr_support_badge_html') : '{{badge}}',
                         'tags' => 'name="mobbr_support_badge_html_field"',
@@ -107,20 +121,6 @@
                         'tags' => 'name="mobbr_support_badgetype_field"',
                     ),
                     array(
-                        'label' => 'Displayed currency:',
-                        'type' => 'select',
-                        'value' => qa_mobbr::$currencies[qa_opt('mobbr_support_currency')],
-                        'options' => qa_mobbr::$currencies,
-                        'tags' => 'name="mobbr_support_currency_field"',
-                    ),
-                    array(
-                        'label' => 'Platform language:',
-                        'type' => 'select',
-                        'value' => qa_mobbr::$languages[qa_opt('mobbr_support_language')],
-                        'options' => qa_mobbr::$languages,
-                        'tags' => 'name="mobbr_support_language_field"',
-                    ),
-                    array(
                         'label' => 'Title for badge widget:',
                         'type' => 'text',
                         'value' => qa_opt('mobbr_support_title'),
@@ -132,7 +132,7 @@
                         'value' => qa_opt('mobbr_support_title_link'),
                         'tags' => 'name="mobbr_support_title_link_field"',
                     ),
-                    /*array(
+                    array(
                         'label' => 'Script type:',
                         'type' => 'select',
                         'value' => qa_mobbr::$scripttypes[qa_opt('mobbr_support_scripttype')],
@@ -164,21 +164,21 @@
                         'type' => 'text',
                         'value' => qa_opt('mobbr_support_platform_account'),
                         'tags' => 'name="mobbr_support_platform_account_field"',
-                        'note' => 'Mobbr name or email of account that is always included in the recipient-list'
+                        'note' => '<small>email or Mobbr-username that is always included in the recipient-list, usually the platform owner</small>'
                     ),
                     array(
                         'label' => 'Platform percentage:',
                         'type' => 'text',
                         'value' => qa_opt('mobbr_support_platform_percentage'),
                         'tags' => 'name="mobbr_support_platform_percentage_field"',
-                        'note' => 'Percentage of button revenue that is paid to platform account'
+                        'note' => '<small>Percentage of revenue that is paid to platform account, may be empty</small>'
                     ),
                     array(
                         'label' => 'Selected answer bonus:',
                         'type' => 'text',
                         'value' => qa_opt('mobbr_support_selected_answer_bonus'),
                         'tags' => 'name="mobbr_support_selected_answer_bonus_field"',
-                        'note' => 'Percentage of button revenue for the selected answer'
+                        'note' => '<small>Percentage of revenue for the selected answer, may be empty</small>'
                     ),
                 ),
 

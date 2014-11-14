@@ -3,7 +3,7 @@
 /*
 	Plugin Name: Mobbr Support
 	Plugin URI: https://github.com/mobbr/mobbr-q2a-plugin
-	Plugin Description: Insert Mobbr metadata and buttons
+	Plugin Description: Add MOBBR.COM crowdpayment support
 	Plugin Version: 1.1
 	Plugin Date: 2012-08-21
 	Plugin Author: Mobbr
