@@ -7,19 +7,6 @@
 
     function qa_db_mobbr_question_ratio_query($postid)
     {
-        /*
-            Derived from:
-
-            SELECT u.handle, u.userid, GREATEST( COUNT(v.postid), 0 ) AS numvotes
-            FROM qa_posts AS q
-            JOIN qa_posts AS a ON q.postid=a.parentid
-            JOIN qa_uservotes AS v ON a.postid=v.postid
-            JOIN qa_users AS u ON u.userid=a.userid
-            WHERE q.postid=6 AND q.parentid IS NULL
-            GROUP BY u.userid
-            HAVING numvotes > 0
-         */
-
         // ---------------------------------------------------------------------------
         // Return the ratio between ANSWERS ONLY.
         // ---------------------------------------------------------------------------
@@ -27,29 +14,20 @@
         if ((defined('QA_EXTERNAL_USERS') && QA_EXTERNAL_USERS) || defined('QA_WORDPRESS_INTEGRATE_PATH'))
         {
             return array(
-                'columns' => array('a.userid', 'count' => 'GREATEST( COUNT(v.postid), 0 )'),
-                'source' => "^posts AS q
-                    JOIN ^posts AS a ON q.postid=a.parentid
-                    JOIN ^uservotes AS v ON a.postid=v.postid
-                    WHERE q.postid=#  AND q.parentid IS NULL AND NOT a.userid IS NULL
-                    GROUP BY a.userid
-                    HAVING count > 0",
-                'arguments' => array($postid),
+                'columns' => array('userid', 'count' => 'GREATEST( SUM( netvotes ), 0 )'),
+                'source' => "^posts WHERE (parentid=# OR postid=#) AND NOT userid IS NULL GROUP BY userid",
+                'arguments' => array($postid, $postid),
                 'sortdesc' => 'count',
             );
         }
         else
         {
             return array(
-                'columns' => array('handle AS userid', 'count' => 'GREATEST( COUNT(v.postid), 0 )'),
-                'source' => "^posts AS q
-                    JOIN ^posts AS a ON q.postid=a.parentid
-                    JOIN ^uservotes AS v ON a.postid=v.postid
-                    JOIN ^users AS u ON u.userid=a.userid
-                    WHERE q.postid=# AND q.parentid IS NULL AND NOT u.userid IS NULL
-                    GROUP BY u.userid
-                    HAVING count > 0",
-                'arguments' => array($postid),
+                'columns' => array('userid' => 'u.handle', 'count' => 'GREATEST( SUM( netvotes ), 0 )'),
+                'source' => "^posts AS p
+                    JOIN ^users AS u ON u.userid=p.userid
+                    WHERE (p.parentid=# OR p.postid=#) AND NOT u.userid IS NULL GROUP BY u.userid",
+                'arguments' => array($postid, $postid),
                 'sortdesc' => 'count',
             );
         }
