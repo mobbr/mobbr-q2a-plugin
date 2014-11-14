@@ -22,7 +22,6 @@
 
 	qa_register_plugin_layer('qa-mobbr-layer.php', 'Mobbr metadata');
 	qa_register_plugin_module('page', 'qa-mobbr-resolver.php', 'qa_mobbr_resolver', 'Mobbr name resolver');
-    qa_register_plugin_module('page', 'qa-mobbr-cronjob.php', 'qa_mobbr_cronjob', 'Mobbr background task');
     qa_register_plugin_module('widget', 'qa-mobbr-widget-button.php', 'qa_mobbr_widget_button', 'Mobbr buttons');
     qa_register_plugin_module('widget', 'qa-mobbr-widget-badge.php', 'qa_mobbr_widget_badge', 'Mobbr badges');
     //qa_register_plugin_module('widget', 'qa-mobbr-widget-header.php', 'qa_mobbr_widget_header', 'Mobbr header');
