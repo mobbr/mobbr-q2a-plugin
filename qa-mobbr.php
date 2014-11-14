@@ -22,10 +22,10 @@
             'test' => 'Test'
         );
 
-        static $scripttypes = array(
+        /*static $scripttypes = array(
             'meta' => 'Meta script (default)',
             'inline' => 'Inline script (for restricted sites)'
-        );
+        );*/
 
         // @formatter:off
         static $currencies = array(

@@ -1,6 +1,6 @@
 <?php
 
-	class qa_mobbr_cronjob {
+	/*class qa_mobbr_cronjob {
 
         function match_request($request)
         {
@@ -26,7 +26,7 @@
             return null;
         }
 
-	}
+	}*/
 
 
 /*

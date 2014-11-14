@@ -141,7 +141,7 @@
             require_once QA_HTML_THEME_LAYER_DIRECTORY . 'qa-mobbr-queries.php';
 
             $environment = qa_opt('mobbr_support_environment');
-            $scripttype = qa_opt('mobbr_support_scripttype');
+            /*$scripttype = qa_opt('mobbr_support_scripttype');*/
             $this->output('<script type="text/javascript" src="' . ($environment === 'test' ? 'https://test-www.mobbr.com/mobbr.js' : 'https://mobbr.com/mobbr-button.js') . '"></script>');
             //if (defined('QA_MOBBR_SSO') && QA_MOBBR_SSO && defined('QA_EXTERNAL_USERS') && QA_EXTERNAL_USERS) {
             // only for Mobbr SSO
@@ -158,13 +158,13 @@
             }
             qa_html_theme_base::head_links();
 
-            if ($scripttype === 'meta') {
+            //if ($scripttype === 'meta') {
                 $meta = $this->get_meta();
                 if (!empty( $meta ) )
                 {
                     $this->output('<meta name="participation" content=\''.json_encode($meta).'\'/>');
                 }
-            }
+            //}
         }
 
         // --------------------------------------------------------------------

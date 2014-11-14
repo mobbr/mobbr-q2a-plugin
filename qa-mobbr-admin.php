@@ -25,18 +25,18 @@
                 return '{{button}}';
             elseif ($option=='mobbr_support_badge_html')
                 return '{{badge}}';
-            elseif ($option=='mobbr_support_cronjob_url')
-                return 'cronjob_86534402';
-            elseif ($option=='mobbr_support_community_percentage')
+            elseif ($option=='mobbr_support_platform_percentage')
                 return 30;
             elseif ($option=='mobbr_support_selected_answer_bonus')
                 return 10;
-            elseif ($option=='mobbr_support_platform_percentage')
+            /*elseif ($option=='mobbr_support_community_percentage')
                 return 30;
+            elseif ($option=='mobbr_support_cronjob_url')
+                return 'cronjob_86534402';
             elseif ($option=='mobbr_support_cronjob_decay_percentage')
                 return 5;
             elseif ($option=='mobbr_support_scripttype')
-                return 'meta';
+                return 'meta';*/
             else
                 return '';
         }
@@ -55,15 +55,15 @@
                 qa_opt('mobbr_support_buttontype', qa_post_text('mobbr_support_buttontype_field'));
                 qa_opt('mobbr_support_title_link', qa_post_text('mobbr_support_title_link_field'));
                 qa_opt('mobbr_support_title', qa_post_text('mobbr_support_title_field'));
-                qa_opt('mobbr_support_cronjob_decay_percentage', qa_post_text('mobbr_support_cronjob_decay_percentage_field'));
-                qa_opt('mobbr_support_cronjob_url', qa_post_text('mobbr_support_cronjob_url_field'));
                 qa_opt('mobbr_support_button_html', qa_post_text('mobbr_support_button_html_field'));
                 qa_opt('mobbr_support_badge_html', qa_post_text('mobbr_support_badge_html_field'));
                 qa_opt('mobbr_support_platform_account', qa_post_text('mobbr_support_platform_account_field'));
                 qa_opt('mobbr_support_platform_percentage', qa_post_text('mobbr_support_platform_percentage_field'));
-                qa_opt('mobbr_support_community_percentage', qa_post_text('mobbr_support_community_percentage_field'));
                 qa_opt('mobbr_support_selected_answer_bonus', qa_post_text('mobbr_support_selected_answer_bonus_field'));
+                /*qa_opt('mobbr_support_cronjob_decay_percentage', qa_post_text('mobbr_support_cronjob_decay_percentage_field'));
+                qa_opt('mobbr_support_cronjob_url', qa_post_text('mobbr_support_cronjob_url_field'));
                 qa_opt('mobbr_support_scripttype', qa_post_text('mobbr_support_scripttype_field'));
+                qa_opt('mobbr_support_community_percentage', qa_post_text('mobbr_support_community_percentage_field'));*/
                 $saved=true;
             }
 
@@ -77,13 +77,6 @@
                         'value' => qa_mobbr::$environments[qa_opt('mobbr_support_environment')],
                         'options' => qa_mobbr::$environments,
                         'tags' => 'name="mobbr_support_environment_field"',
-                    ),
-                    array(
-                        'label' => 'Script type:',
-                        'type' => 'select',
-                        'value' => qa_mobbr::$scripttypes[qa_opt('mobbr_support_scripttype')],
-                        'options' => qa_mobbr::$scripttypes,
-                        'tags' => 'name="mobbr_support_scripttype_field"',
                     ),
                     array(
                         'label' => 'Button type:',
@@ -139,7 +132,13 @@
                         'value' => qa_opt('mobbr_support_title_link'),
                         'tags' => 'name="mobbr_support_title_link_field"',
                     ),
-                    array(
+                    /*array(
+                        'label' => 'Script type:',
+                        'type' => 'select',
+                        'value' => qa_mobbr::$scripttypes[qa_opt('mobbr_support_scripttype')],
+                        'options' => qa_mobbr::$scripttypes,
+                        'tags' => 'name="mobbr_support_scripttype_field"',
+                    ),array(
                         'label' => 'Cronjob decay percentage:',
                         'type' => 'text',
                         'value' => qa_opt('mobbr_support_cronjob_decay_percentage'),
@@ -154,6 +153,13 @@
                         'note' => 'Make sure this URL (/'.qa_opt('mobbr_support_cronjob_url').') is called every week, other week or month, it handles point decay. If possible use .htaccess to protect from misuse. Must be a unique page and unguessable.'
                     ),
                     array(
+                        'label' => 'Community percentage:',
+                        'type' => 'text',
+                        'value' => qa_opt('mobbr_support_community_percentage'),
+                        'tags' => 'name="mobbr_support_community_percentage_field"',
+                        'note' => 'Percentage of button revenue that is divided among community members based on their points'
+                    ),*/
+                    array(
                         'label' => 'Platform account:',
                         'type' => 'text',
                         'value' => qa_opt('mobbr_support_platform_account'),
@@ -166,13 +172,6 @@
                         'value' => qa_opt('mobbr_support_platform_percentage'),
                         'tags' => 'name="mobbr_support_platform_percentage_field"',
                         'note' => 'Percentage of button revenue that is paid to platform account'
-                    ),
-                    array(
-                        'label' => 'Community percentage:',
-                        'type' => 'text',
-                        'value' => qa_opt('mobbr_support_community_percentage'),
-                        'tags' => 'name="mobbr_support_community_percentage_field"',
-                        'note' => 'Percentage of button revenue that is divided among community members based on their points'
                     ),
                     array(
                         'label' => 'Selected answer bonus:',

@@ -4,11 +4,11 @@
 
 		function process_event($event, $userid, $handle, $cookieid, $params)
 		{
-            $scripttype = qa_opt('mobbr_support_scripttype');
+            /*$scripttype = qa_opt('mobbr_support_scripttype');
             if ($scripttype !== 'meta')
             {
                 return;
-            }
+            }*/
 		    switch( $event )
             {
                 // ------------------------------------------------------------
