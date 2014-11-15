@@ -23,7 +23,7 @@
         else
         {
             return array(
-                'columns' => array('userid' => 'u.handle', 'count' => 'GREATEST( SUM( netvotes ), 0 )'),
+                'columns' => array('userid' => 'u.handle', 'count' => 'GREATEST( SUM( p.netvotes ), 0 )'),
                 'source' => "^posts AS p
                     JOIN ^users AS u ON u.userid=p.userid
                     WHERE (p.parentid=# OR p.postid=#) AND NOT u.userid IS NULL GROUP BY u.userid",
