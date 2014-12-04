@@ -226,6 +226,17 @@
                 //$this->output('<meta name="participation" content=\''.json_encode($meta).'\'/>');
             }
         }
+
+        // Q2A layer function
+
+        public function q_item_main($q_item)
+        {
+            require_once QA_HTML_THEME_LAYER_DIRECTORY . 'qa-mobbr-frontend.php';
+
+            $this->output(qa_mobbr_frontend::get_html_button());
+            parent::q_item_main($q_item);
+        }
+
 	}
 
 
