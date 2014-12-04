@@ -13,6 +13,8 @@
                 return 1;
             elseif ($option=='mobbr_support_currency')
                 return 'EUR';
+            elseif ($option=='mobbr_support_show_button_in_lists')
+                return false;
             elseif ($option=='mobbr_support_language')
                 return 'EN';
             elseif ($option=='mobbr_support_buttontype')
@@ -52,6 +54,7 @@
                 qa_opt('mobbr_support_language', qa_post_text('mobbr_support_language_field'));
                 qa_opt('mobbr_support_badgetype', qa_post_text('mobbr_support_badgetype_field'));
                 qa_opt('mobbr_support_currency', qa_post_text('mobbr_support_currency_field'));
+                qa_opt('mobbr_support_show_button_in_lists', (bool) qa_post_text('mobbr_support_show_button_in_lists_field'));
                 qa_opt('mobbr_support_buttontype', qa_post_text('mobbr_support_buttontype_field'));
                 qa_opt('mobbr_support_title_link', qa_post_text('mobbr_support_title_link_field'));
                 qa_opt('mobbr_support_title', qa_post_text('mobbr_support_title_field'));
@@ -98,6 +101,12 @@
                         'value' => qa_mobbr::$currencies[qa_opt('mobbr_support_currency')],
                         'options' => qa_mobbr::$currencies,
                         'tags' => 'name="mobbr_support_currency_field"',
+                    ),
+                    array(
+                        'label' => 'Show button in question lists',
+                        'type' => 'checkbox',
+                        'value' => (bool) qa_opt('mobbr_support_show_button_in_lists'),
+                        'tags' => 'name="mobbr_support_show_button_in_lists_field"',
                     ),
                     array(
                         'label' => 'Button widget:',

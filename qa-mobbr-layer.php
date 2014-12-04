@@ -233,7 +233,9 @@
         {
             require_once QA_HTML_THEME_LAYER_DIRECTORY . 'qa-mobbr-frontend.php';
 
-            $this->output(qa_mobbr_frontend::get_html_button());
+            if (qa_opt('mobbr_support_show_button_in_lists')) {
+                $this->output(qa_mobbr_frontend::get_html_button());
+            }
             parent::q_item_main($q_item);
         }
 
