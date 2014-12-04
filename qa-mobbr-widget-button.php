@@ -25,20 +25,9 @@
 
         function output_widget($region, $place, $themeobject, $template, $request, $qa_content)
         {
-            require_once 'qa-mobbr.php';
-            require_once 'qa-mobbr-url.php';
-            require_once 'qa-mobbr-layer.php';
+            require_once 'qa-mobbr-frontend.php';
 
-            $buttontype = qa_mobbr::$buttontypes[qa_opt('mobbr_support_buttontype')];
-            $currency = qa_opt('mobbr_support_currency');
-            $buttonhtml = '<script type="text/javascript">mobbr.button' . $buttontype. '(' . '"", "' . $currency . '");</script>';
-            $html = qa_opt('mobbr_support_button_html');
-            if (strpos($html, '{{button}}')) {
-                $html = str_replace('{{button}}', $buttonhtml, $html);
-            } else {
-                $html = $buttonhtml;
-            }
-            $themeobject->output($html );
+            $themeobject->output(qa_mobbr_frontend::get_html_button());
         }
     }
 
