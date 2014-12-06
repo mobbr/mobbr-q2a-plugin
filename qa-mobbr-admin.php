@@ -111,6 +111,7 @@
                     array(
                         'label' => 'Button widget:',
                         'type' => 'textarea',
+                        'rows' => 3,
                         'value' => qa_opt('mobbr_support_button_html') ? qa_opt('mobbr_support_button_html') : '{{button}}',
                         'tags' => 'name="mobbr_support_button_html_field"',
                         'note' => '<small>HTML that will be added inline to the page, {{button}} is the placeholder for the button and should always be here</small>',

@@ -120,7 +120,7 @@
             $meta = array(
                 "id-base" => $this->id_base(),
                 "language" => qa_opt('mobbr_support_language'),
-                "description" => "Donation to top community members, based on the points the earned.", 
+                "description" => "Donation to top community members, based on the points the earned.",
                 "keywords" => array("qa", "question2answer"));
             $meta['participants'] = array();
             $platform_percentage = qa_opt('mobbr_support_platform_percentage');
