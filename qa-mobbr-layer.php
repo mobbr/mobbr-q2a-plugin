@@ -120,7 +120,7 @@
             $meta = array(
                 "id-base" => $this->id_base(),
                 "language" => qa_opt('mobbr_support_language'),
-                "description" => "Donation to top community members, based on the points the earned.", 
+                "description" => "Donation to top community members, based on the points the earned.",
                 "keywords" => array("qa", "question2answer"));
             $meta['participants'] = array();
             $platform_percentage = qa_opt('mobbr_support_platform_percentage');
@@ -226,6 +226,19 @@
                 //$this->output('<meta name="participation" content=\''.json_encode($meta).'\'/>');
             }
         }
+
+        // Q2A layer function
+
+        public function q_item_main($q_item)
+        {
+            require_once QA_HTML_THEME_LAYER_DIRECTORY . 'qa-mobbr-frontend.php';
+
+            if (qa_opt('mobbr_support_show_button_in_lists') && isset($q_item['raw']['postid'])) {
+                $this->output(qa_mobbr_frontend::get_html_button($q_item['raw']['postid']));
+            }
+            parent::q_item_main($q_item);
+        }
+
 	}
 
 
