@@ -233,8 +233,8 @@
         {
             require_once QA_HTML_THEME_LAYER_DIRECTORY . 'qa-mobbr-frontend.php';
 
-            if (qa_opt('mobbr_support_show_button_in_lists') && isset($q_item['raw']['postid'])) {
-                $this->output(qa_mobbr_frontend::get_html_button($q_item['raw']['postid']));
+            if (qa_opt('mobbr_support_show_button_in_lists') && isset($q_item['raw']['postid']) && isset($q_item['raw']['title'])) {
+                $this->output(qa_mobbr_frontend::get_html_button($q_item['raw']['postid'], $q_item['raw']['title'] ));
             }
             parent::q_item_main($q_item);
         }
