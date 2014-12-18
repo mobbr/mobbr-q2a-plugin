@@ -5,9 +5,9 @@ Mobbr plugin for Question2Answer (http://www.question2answer.org/)
 
 The plugin makes questions crowdfundable and crowdpayable. Open questions are automatically in crowdfunding mode, once closed the funds are paid to all contributors based on ratio of votes.
 
-It’s very easy to set up, follow these instructions: https://docs.mobbr.com/display/MobDoc/Question2Answer
+To install this plugin (requires Q2A 1.3 or later), create the directory **<q2aroot>/qa-plugin/mobbr-support** and copy all files to this directory. Then open the Plugins section of the Admin panel and check if it is listed. The plugin has its own admin page there.
 
-For questions please go here: http://ask.mobbr.com/plugins
+For questions please go here: http://ask.mobbr.com/plugins where you can see the plugin in action also.
 
 What does the Mobbr plugin do?
 ------------------------------
