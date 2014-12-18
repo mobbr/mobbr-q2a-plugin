@@ -4,7 +4,7 @@
 
         function init_queries($tableslc)
         {
-            // initialization neccessairy
+            // nothing
         }
 
         function option_default($option)
@@ -31,14 +31,6 @@
                 return 30;
             elseif ($option=='mobbr_support_selected_answer_bonus')
                 return 10;
-            /*elseif ($option=='mobbr_support_community_percentage')
-                return 30;
-            elseif ($option=='mobbr_support_cronjob_url')
-                return 'cronjob_86534402';
-            elseif ($option=='mobbr_support_cronjob_decay_percentage')
-                return 5;
-            elseif ($option=='mobbr_support_scripttype')
-                return 'meta';*/
             else
                 return '';
         }
@@ -63,10 +55,6 @@
                 qa_opt('mobbr_support_platform_account', qa_post_text('mobbr_support_platform_account_field'));
                 qa_opt('mobbr_support_platform_percentage', qa_post_text('mobbr_support_platform_percentage_field'));
                 qa_opt('mobbr_support_selected_answer_bonus', qa_post_text('mobbr_support_selected_answer_bonus_field'));
-                /*qa_opt('mobbr_support_cronjob_decay_percentage', qa_post_text('mobbr_support_cronjob_decay_percentage_field'));
-                qa_opt('mobbr_support_cronjob_url', qa_post_text('mobbr_support_cronjob_url_field'));
-                qa_opt('mobbr_support_scripttype', qa_post_text('mobbr_support_scripttype_field'));
-                qa_opt('mobbr_support_community_percentage', qa_post_text('mobbr_support_community_percentage_field'));*/
                 $saved=true;
             }
 
