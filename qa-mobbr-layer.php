@@ -1,6 +1,7 @@
 <?php
 
-	class qa_html_theme_layer extends qa_html_theme_base {
+	class qa_html_theme_layer extends qa_html_theme_base
+    {
 
 
         public function id_base()
@@ -48,6 +49,9 @@
                 "type" => $type,
                 "language" => qa_opt('mobbr_support_language'),
                 "keywords" => array("qa", "question2answer"),
+                "message"  => ($type=='pledge'
+                        ? "Task is in crowdfunding mode. This payment will be divided among thread participants once an answer is selected"
+                        : "Task is in crowdpaying mode. This payment will be instantly divided among thread participants based on votes" ),
                 "participants" => array() );
 
             // add question repliers, no percentages but ratios
@@ -91,6 +95,7 @@
         {
             return array(
                 "id-base" => $this->id_base(),
+                "message"  => "Donation to this member. The member will receive a notification mail.",
                 "participants" => array(
                     "id" => $username,
                     "role" => "Member",
@@ -120,7 +125,7 @@
             $meta = array(
                 "id-base" => $this->id_base(),
                 "language" => qa_opt('mobbr_support_language'),
-                "description" => "Donation to top community members, based on the points the earned.",
+                "message" => "This payment will be instantly divided among top community members based on the points they earned.",
                 "keywords" => array("qa", "question2answer"));
             $meta['participants'] = array();
             $platform_percentage = qa_opt('mobbr_support_platform_percentage');
@@ -148,35 +153,36 @@
             require_once QA_HTML_THEME_LAYER_DIRECTORY . 'qa-mobbr-queries.php';
 
             $environment = qa_opt('mobbr_support_environment');
-            /*$scripttype = qa_opt('mobbr_support_scripttype');*/
-            $this->output('<script type="text/javascript" src="' . ($environment === 'test' ? 'https://test-www.mobbr.com/mobbr.js' : 'https://mobbr.com/mobbr-button.js') . '"></script>');
-            //if (defined('QA_MOBBR_SSO') && QA_MOBBR_SSO && defined('QA_EXTERNAL_USERS') && QA_EXTERNAL_USERS) {
-            // only for Mobbr SSO
-            $this->output('<script>');
-            //$this->output('window.onload = function () {');
-            $this->output('mobbr.setUiUrl("' . ($environment === 'test' ? 'https://test-www.mobbr.com/' : 'https://mobbr.com/') . '");');
-            $this->output('mobbr.setApiUrl("' . ($environment === 'test' ? 'https://test-api.mobbr.com/' : 'https://api.mobbr.com/') . '");');
-            $this->output('mobbr.setLightboxUrl("' . ($environment === 'test' ? 'https://test-www.mobbr.com/lightbox/#' : 'https://mobbr.com/lightbox/#') . '");');
-            $this->output('mobbr.createDiv();');
-            //$this->output('}');
-            $this->output('</script>');
-            if (defined('QA_MOBBR_SSO') && QA_MOBBR_SSO) {
+            if ($environment === 'test' )
+            {
+                $this->output('<script type="text/javascript" src="https://test-www.mobbr.com/mobbr.js"></script>');
+                $this->output('<script>');
+                $this->output('mobbr.setUiUrl("https://test-www.mobbr.com/");');
+                $this->output('mobbr.setApiUrl("https://test-api.mobbr.com/");');
+                $this->output('mobbr.setLightboxUrl("https://test-www.mobbr.com/lightbox/#");');
+                $this->output('mobbr.createDiv();');
+                $this->output('</script>');
+            }
+            else
+            {
+                $this->output('<script type="text/javascript" src="https://mobbr.com/mobbr-button.js"></script>');
+            }
+            if (defined('QA_MOBBR_SSO') && QA_MOBBR_SSO)
+            {
                 $this->output('<script>mobbrSSO.enable();</script>');
             }
             qa_html_theme_base::head_links();
-
-            //if ($scripttype === 'meta') {
-                $meta = $this->get_meta();
-                if (!empty( $meta ) )
-                {
-                    $this->output('<meta name="participation" content=\''.json_encode($meta).'\'/>');
-                }
-            //}
+            $meta = $this->get_meta();
+            if (!empty( $meta ) )
+            {
+                $this->output('<meta name="participation" content=\''.json_encode($meta).'\'/>');
+            }
         }
 
         // --------------------------------------------------------------------
 
-        public function get_meta() {
+        public function get_meta()
+        {
             // -----------------------------------------------------------
             // We detect on which page type we are and generate the script
             // that is needed for that particular page type.

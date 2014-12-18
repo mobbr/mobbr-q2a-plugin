@@ -23,8 +23,6 @@
 	qa_register_plugin_layer('qa-mobbr-layer.php', 'Mobbr metadata');
 	qa_register_plugin_module('page', 'qa-mobbr-resolver.php', 'qa_mobbr_resolver', 'Mobbr name resolver');
     qa_register_plugin_module('widget', 'qa-mobbr-widget-button.php', 'qa_mobbr_widget_button', 'Mobbr buttons');
-    //qa_register_plugin_module('widget', 'qa-mobbr-widget-badge.php', 'qa_mobbr_widget_badge', 'Mobbr badges');
-    //qa_register_plugin_module('widget', 'qa-mobbr-widget-header.php', 'qa_mobbr_widget_header', 'Mobbr header');
     qa_register_plugin_module('module', 'qa-mobbr-admin.php', 'qa_mobbr_admin', 'Mobbr admin');
     qa_register_plugin_module('event', 'qa-mobbr-event-handler.php', 'qa_mobbr_event_handler', 'Mobbr notifier');
 

@@ -15,7 +15,7 @@
         {
             return array(
                 'columns' => array('userid', 'count' => 'GREATEST( SUM( netvotes ), 0 )'),
-                'source' => "^posts WHERE (parentid=# OR postid=#) AND NOT userid IS NULL GROUP BY userid",
+                'source' => "^posts WHERE (parentid=# OR postid=#) AND NOT userid IS NULL GROUP BY userid HAVING count>0",
                 'arguments' => array($postid, $postid),
                 'sortdesc' => 'count',
             );
@@ -26,7 +26,7 @@
                 'columns' => array('userid' => 'u.handle', 'count' => 'GREATEST( SUM( p.netvotes ), 0 )'),
                 'source' => "^posts AS p
                     JOIN ^users AS u ON u.userid=p.userid
-                    WHERE (p.parentid=# OR p.postid=#) AND NOT u.userid IS NULL GROUP BY u.userid",
+                    WHERE (p.parentid=# OR p.postid=#) AND NOT u.userid IS NULL GROUP BY u.userid HAVING count>0",
                 'arguments' => array($postid, $postid),
                 'sortdesc' => 'count',
             );

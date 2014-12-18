@@ -80,6 +80,7 @@
                         'value' => qa_mobbr::$languages[qa_opt('mobbr_support_language')],
                         'options' => qa_mobbr::$languages,
                         'tags' => 'name="mobbr_support_language_field"',
+                        'note' => '<small>Set the language of the questions</small>',
                     ),
                     array(
                         'label' => 'Mobbr API:',
@@ -87,6 +88,7 @@
                         'value' => qa_mobbr::$environments[qa_opt('mobbr_support_environment')],
                         'options' => qa_mobbr::$environments,
                         'tags' => 'name="mobbr_support_environment_field"',
+                        'note' => '<small>Set to Test during development. No real payment are made in Test. Our test site is at <a target="_blank" href="https://test-www.mobbr.com">https://test-www.mobbr.com</a>.</small>',
                     ),
                     array(
                         'label' => 'Button type:',
@@ -94,6 +96,7 @@
                         'value' => qa_mobbr::$buttontypes[qa_opt('mobbr_support_buttontype')],
                         'options' => qa_mobbr::$buttontypes,
                         'tags' => 'name="mobbr_support_buttontype_field"',
+                        'note' => '<small>Choose which button you would like to see. To place buttons go to the <a href="http://ask.mobbr.com/admin/layout">layout menu</a></small>',
                     ),
                     array(
                         'label' => 'Button currency:',
@@ -101,12 +104,14 @@
                         'value' => qa_mobbr::$currencies[qa_opt('mobbr_support_currency')],
                         'options' => qa_mobbr::$currencies,
                         'tags' => 'name="mobbr_support_currency_field"',
+                        'note' => '<small>Choose which currency to show in the button. All payments are shown in this currency based on actual exchange rates.</small>',
                     ),
                     array(
                         'label' => 'Show button in question lists',
                         'type' => 'checkbox',
                         'value' => (bool) qa_opt('mobbr_support_show_button_in_lists'),
                         'tags' => 'name="mobbr_support_show_button_in_lists_field"',
+                        'note' => '<small>Check if you want to see buttons in the questions lists. This can <strong>NOT</strong> be controlled through the <a href="http://ask.mobbr.com/admin/layout">layout menu</a>. Using this option might require a change to your theme.</small>',
                     ),
                     array(
                         'label' => 'Button widget:',
@@ -116,79 +121,26 @@
                         'tags' => 'name="mobbr_support_button_html_field"',
                         'note' => '<small>HTML that will be added inline to the page, {{button}} is the placeholder for the button and should always be here</small>',
                     ),
-                    /*array(
-                        'label' => 'Badge widget HTML:',
-                        'type' => 'textarea',
-                        'value' => qa_opt('mobbr_support_badge_html') ? qa_opt('mobbr_support_badge_html') : '{{badge}}',
-                        'tags' => 'name="mobbr_support_badge_html_field"',
-                        'note' => 'Will be added inline to the page, {{badge}} is the placeholder for Mobbr badge-code',
-                    ),
-                    array(
-                        'label' => 'Badge type:',
-                        'type' => 'select',
-                        'value' => qa_mobbr::$badgetypes[qa_opt('mobbr_support_badgetype')],
-                        'options' => qa_mobbr::$badgetypes,
-                        'tags' => 'name="mobbr_support_badgetype_field"',
-                    ),
-                    array(
-                        'label' => 'Title for badge widget:',
-                        'type' => 'text',
-                        'value' => qa_opt('mobbr_support_title'),
-                        'tags' => 'name="mobbr_support_title_field"',
-                    ),
-                    array(
-                        'label' => 'URL for link in badge widget:',
-                        'type' => 'text',
-                        'value' => qa_opt('mobbr_support_title_link'),
-                        'tags' => 'name="mobbr_support_title_link_field"',
-                    ),
-                    array(
-                        'label' => 'Script type:',
-                        'type' => 'select',
-                        'value' => qa_mobbr::$scripttypes[qa_opt('mobbr_support_scripttype')],
-                        'options' => qa_mobbr::$scripttypes,
-                        'tags' => 'name="mobbr_support_scripttype_field"',
-                    ),array(
-                        'label' => 'Cronjob decay percentage:',
-                        'type' => 'text',
-                        'value' => qa_opt('mobbr_support_cronjob_decay_percentage'),
-                        'tags' => 'name="mobbr_support_cronjob_decay_percentage_field"',
-                        'note' => 'The percentage with which all user points are reduced on every cronjob call (see below).'
-                    ),
-                    array(
-                        'label' => 'Cronjob callback page:',
-                        'type' => 'text',
-                        'value' => qa_opt('mobbr_support_cronjob_url'),
-                        'tags' => 'name="mobbr_support_cronjob_url_field"',
-                        'note' => 'Make sure this URL (/'.qa_opt('mobbr_support_cronjob_url').') is called every week, other week or month, it handles point decay. If possible use .htaccess to protect from misuse. Must be a unique page and unguessable.'
-                    ),
-                    array(
-                        'label' => 'Community percentage:',
-                        'type' => 'text',
-                        'value' => qa_opt('mobbr_support_community_percentage'),
-                        'tags' => 'name="mobbr_support_community_percentage_field"',
-                        'note' => 'Percentage of button revenue that is divided among community members based on their points'
-                    ),*/
                     array(
                         'label' => 'Platform account:',
                         'type' => 'text',
                         'value' => qa_opt('mobbr_support_platform_account'),
                         'tags' => 'name="mobbr_support_platform_account_field"',
-                        'note' => '<small>email or Mobbr-username that is always included in the recipient-list, usually the platform owner</small>'
+                        'note' => '<small>Mobbr username that is always included in the recipient-list, usually the platform owner. May be empty. Example: Patrick</small>'
                     ),
                     array(
                         'label' => 'Platform percentage:',
                         'type' => 'text',
                         'value' => qa_opt('mobbr_support_platform_percentage'),
                         'tags' => 'name="mobbr_support_platform_percentage_field"',
-                        'note' => '<small>Percentage of revenue that is paid to platform account, may be empty</small>'
+                        'note' => '<small>Percentage of revenue that is paid to platform account above. May be empty. Example: 10</small>'
                     ),
                     array(
                         'label' => 'Selected answer bonus:',
                         'type' => 'text',
                         'value' => qa_opt('mobbr_support_selected_answer_bonus'),
                         'tags' => 'name="mobbr_support_selected_answer_bonus_field"',
-                        'note' => '<small>Percentage of revenue for the selected answer, may be empty</small>'
+                        'note' => '<small>Percentage of revenue for the selected answer, may be empty. Example: 10</small>'
                     ),
                 ),
 
