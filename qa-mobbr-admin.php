@@ -84,7 +84,7 @@
                         'value' => qa_mobbr::$buttontypes[qa_opt('mobbr_support_buttontype')],
                         'options' => qa_mobbr::$buttontypes,
                         'tags' => 'name="mobbr_support_buttontype_field"',
-                        'note' => '<small>Choose which button you would like to see. To place buttons go to the <a href="http://ask.mobbr.com/admin/layout">layout menu</a></small>',
+                        'note' => '<small>Choose which button you would like to see. To place buttons go to the <a href="http://ask.mobbr.com/admin/layout">layout menu</a> under available widgets.</small>',
                     ),
                     array(
                         'label' => 'Button currency:',
@@ -114,21 +114,21 @@
                         'type' => 'text',
                         'value' => qa_opt('mobbr_support_platform_account'),
                         'tags' => 'name="mobbr_support_platform_account_field"',
-                        'note' => '<small>Mobbr username that is always included in the recipient-list, usually the platform owner. May be empty. Example: Patrick</small>'
+                        'note' => '<small><em>Optional</em>. Mobbr username that is always included in the recipient-list, usually the platform owner. Example: Patrick</small>'
                     ),
                     array(
                         'label' => 'Platform percentage:',
                         'type' => 'text',
                         'value' => qa_opt('mobbr_support_platform_percentage'),
                         'tags' => 'name="mobbr_support_platform_percentage_field"',
-                        'note' => '<small>Percentage of revenue that is paid to platform account above. May be empty. Example: 10</small>'
+                        'note' => '<small><em>Optional</em>. Percentage of revenue that is paid to platform account above. Example: 10</small>'
                     ),
                     array(
                         'label' => 'Selected answer bonus:',
                         'type' => 'text',
                         'value' => qa_opt('mobbr_support_selected_answer_bonus'),
                         'tags' => 'name="mobbr_support_selected_answer_bonus_field"',
-                        'note' => '<small>Percentage of revenue for the selected answer, may be empty. Example: 10</small>'
+                        'note' => '<small><em>Optional</em>. Percentage of revenue for the selected answer. Example: 10</small>'
                     ),
                 ),
 
