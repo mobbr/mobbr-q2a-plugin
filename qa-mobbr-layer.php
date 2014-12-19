@@ -50,8 +50,8 @@
                 "language" => qa_opt('mobbr_support_language'),
                 "keywords" => array("qa", "question2answer"),
                 "message"  => ($type=='pledge'
-                        ? "Task is in crowdfunding mode. This payment will be divided among thread participants once an answer is selected"
-                        : "Task is in crowdpaying mode. This payment will be instantly divided among thread participants based on votes" ),
+                        ? "Pledge money for solving this question. The money will be divided among contributors by ratio of votes, once a best answer is accepted"
+                        : "Pay to all contributors in this thread. The money will be instantly divided among contributors by ratio of votes" ),
                 "participants" => array() );
 
             // add question repliers, no percentages but ratios
